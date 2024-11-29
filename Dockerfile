@@ -1,11 +1,11 @@
-FROM python:3
+FROM --platform=linux/amd64 python:3.8-slim-buster as build
 
 WORKDIR /usr/app/src
 
-# Now the structure looks like this '/usr/app/src/test.py'
+# copied files are located at /usr/app/src/
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD [ "python", "hello_world.py"]
+CMD [ "python3", "hello_world.py"]
